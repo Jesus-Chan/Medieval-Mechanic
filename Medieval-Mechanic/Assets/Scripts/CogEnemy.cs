@@ -1,33 +1,66 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CogEnemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f; // Speed at which the cog moves
-    [SerializeField] private Transform pointA;
-    [SerializeField] private Transform pointB;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private int damageGiven = 1;
+    [SerializeField] private float knockbackForce = 200f;
+    [SerializeField] private float upwardForce = 100f;
 
-    private Transform target;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private int moveDirection = 1;
+    private Rigidbody2D rb;
     void Start()
     {
-        target = pointB; // Start moving towards pointB
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y);
+    }
 
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            target.position,
-            speed * Time.deltaTime
-        );
-
-        if (Vector2.Distance(transform.position, target.position) < 0.1f)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // 🔹 Turn when hitting Player or another Enemy
+        if (other.gameObject.CompareTag("Player") ||
+            other.gameObject.CompareTag("Enemy"))
         {
-            target = target == pointA ? pointB : pointA;
+            Turn();
         }
+
+        // 🔹 Damage player
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerMovment player = other.gameObject.GetComponent<PlayerMovment>();
+
+            if (player != null)
+            {
+                player.TakeDamage(damageGiven);
+
+                float knockDir = other.transform.position.x > transform.position.x
+                    ? knockbackForce
+                    : -knockbackForce;
+
+                player.TakeKnockback(knockDir, upwardForce);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 🔹 Turn when hitting TurnPoint trigger
+        if (other.CompareTag("EnemyBlock"))
+        {
+            Turn();
+        }
+    }
+
+    private void Turn()
+    {
+        moveDirection *= -1;
+
+        // Optional: flip sprite visually
+        //transform.localScale = new Vector3(moveDirection, 1, 1);
     }
 
     public void Die()

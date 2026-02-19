@@ -2,49 +2,64 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    [Header("Attack Settings")]
+    [SerializeField] private float attackRange = 0.6f;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private float attackCooldown = 0.5f;
 
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask enemyLayer;
 
-    [SerializeField] private float range = 1.0f; // The range of the attack
-    [SerializeField] private int damage = 1; // The amount of damage this attack will deal
-    private float attackCooldown = 0f; // Cooldown timer for the attack
+    private float nextAttackTime;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float attackSpeed = 1.0f; // The speed of the attack animation
-
-    public LayerMask enemyLayer; // Layer mask to specify which layers are considered enemies
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        if(Time.time >= attackCooldown)
+        if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown("Fire1")) // Check for attack input (mouse 1 or ctrl)
+            if (Input.GetButtonDown("Fire1"))
             {
-                performAttack();
-                attackCooldown = Time.time + attackSpeed; // Set the next time the attack can be performed
+                nextAttackTime = Time.time + attackCooldown;
+                AttackHit();
             }
         }
-
-
     }
 
-    void performAttack()
+    void AttackHit()
     {
+        // Play animation
+        if (animator != null)
+            animator.SetTrigger("Attack");
+
+        // Flip attack point depending on facing direction
+        Vector3 localPos = attackPoint.localPosition;
+        localPos.x = Mathf.Abs(localPos.x) * (spriteRenderer.flipX ? -1 : 1);
+        attackPoint.localPosition = localPos;
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
-            enemyLayers
+            enemyLayer
         );
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>()?.TakeDamage(attackDamage);
+            enemy.GetComponent<CogEnemy>()?.Die();
         }
     }
 
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 }
