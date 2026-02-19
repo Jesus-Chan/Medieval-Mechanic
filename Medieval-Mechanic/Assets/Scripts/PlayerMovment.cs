@@ -15,13 +15,20 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private GameObject cherrieParticles, dustParticles;
+    [SerializeField] private Transform wrench;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private TMP_Text CogCounterText;
+    [SerializeField] private int questGoal = 5;
+
     private float horizontalValue;
     private float RayDistance = 0.25f;
     private bool canMove;
     private int StartingHealth = 4;
     private int Health = 0;
     public int CherriesCollected =0;
+    public int CogsKilled = 0;
     private bool InWater;
+
 
     private Rigidbody2D rigbod;
     private SpriteRenderer SpriteRend;
@@ -38,6 +45,7 @@ public class PlayerMovment : MonoBehaviour
         SpriteRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         audiosource = GetComponent<AudioSource>();
+        UpdateCogUI();
     }
 
     // Update is called once per frame
@@ -123,7 +131,9 @@ public class PlayerMovment : MonoBehaviour
 
     private void FlipSprite(bool direction) 
     {
-        SpriteRend.flipX = direction;
+        float dir = direction ? -1f : 1f;
+        transform.localScale = new Vector3(dir, 1f, 1f);
+
     }
 
     private void Jump()
@@ -202,4 +212,22 @@ public class PlayerMovment : MonoBehaviour
         }
         
     }
+
+    public void SetSpawnPoint(Transform newSpawnPoint)
+    {
+        SpawnPosition = newSpawnPoint;
+    }
+
+    private void UpdateCogUI()
+    {
+        CogCounterText.text = CogsKilled + " / " + questGoal;
+    }
+    public void AddCogKill()
+    {
+        CogsKilled++;
+        UpdateCogUI();
+    }
+
+
+
 }

@@ -3,10 +3,9 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [Header("Attack Settings")]
-    [SerializeField] private float attackRange = 0.6f;
+    [SerializeField] private float attackRange = 1f;
     [SerializeField] private int attackDamage = 1;
-    [SerializeField] private float attackCooldown = 0.5f;
-
+    [SerializeField] private float attackCooldown = 0.4f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
 
@@ -27,18 +26,14 @@ public class Attack : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 nextAttackTime = Time.time + attackCooldown;
-                AttackHit();
+                animator.SetTrigger("yesAttack");
             }
         }
     }
 
-    void AttackHit()
+    // This will be called from Animation Event
+    public void DealDamage()
     {
-        // Play animation
-        if (animator != null)
-            animator.SetTrigger("Attack");
-
-        // Flip attack point depending on facing direction
         Vector3 localPos = attackPoint.localPosition;
         localPos.x = Mathf.Abs(localPos.x) * (spriteRenderer.flipX ? -1 : 1);
         attackPoint.localPosition = localPos;
@@ -58,7 +53,6 @@ public class Attack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }

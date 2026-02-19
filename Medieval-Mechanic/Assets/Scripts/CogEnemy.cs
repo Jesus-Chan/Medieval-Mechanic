@@ -65,6 +65,13 @@ public class CogEnemy : MonoBehaviour
 
     public void Die()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovment>().AddCogKill();
+        }
+
         Destroy(gameObject);
     }
 }

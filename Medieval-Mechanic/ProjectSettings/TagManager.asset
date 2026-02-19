@@ -9,6 +9,7 @@ TagManager:
   - Bunny
   - EnemyBlock
   - Cherry
+  - Melon
   layers:
   - Default
   - TransparentFX
