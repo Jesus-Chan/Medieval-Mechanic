@@ -10,6 +10,7 @@ TagManager:
   - EnemyBlock
   - Cherry
   - Melon
+  - GrappleSurface
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - GrappleSurface
   - 
   - 
   - 

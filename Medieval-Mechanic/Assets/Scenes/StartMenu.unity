@@ -1641,9 +1641,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A game by: Erik Jakobsson,\nAlbin Svahlstedt and\nHannes Eichhorn\r\n\nWith
-    assets from: Pixel Frog, Frogs and Kings, Selfmade\n\nMusic used:  \"The Tale
-    of a Cruel World\" produced by DM DOKURO\n                      \n"
+  m_text: "A game by: \nAlbin Svahlstedt \n\r\n\nWith assets from: Pixel Frog, Frogs
+    and Kings, \nHannes Eichhorn, Ikoiku on itch.io, DaniDeDestroyer pinterest,\nSelfmade\n\nMusic
+    used:  \"The Tale of a Cruel World\" produced by DM DOKURO\n                     
+    \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
