@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2680537641238714115}
   - component: {fileID: 2033636727359098130}
   - component: {fileID: 870426978143637239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CogWheel
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +173,8 @@ MonoBehaviour:
   damageGiven: 1
   knockbackForce: 200
   upwardForce: 100
+  deathSound: {fileID: 8300000, guid: a0fe2ab290509bd46b9e2a15493b5852, type: 3}
+  deathParticles: {fileID: 5219928479917098427, guid: 0e1599a508af0774aa19fd05f062bb75, type: 3}
 --- !u!1 &822415005655515945
 GameObject:
   m_ObjectHideFlags: 0

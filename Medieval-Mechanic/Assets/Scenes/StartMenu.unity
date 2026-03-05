@@ -1543,8 +1543,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -172.61}
-  m_SizeDelta: {x: 600, y: 500}
+  m_AnchoredPosition: {x: 588, y: -8.59}
+  m_SizeDelta: {x: 600, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760127102
 MonoBehaviour:
@@ -1618,7 +1618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5, y: 7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878334829
@@ -1641,10 +1641,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A game by: \nAlbin Svahlstedt \n\r\n\nWith assets from: Pixel Frog, Frogs
-    and Kings, \nHannes Eichhorn, Ikoiku on itch.io, DaniDeDestroyer pinterest,\nSelfmade\n\nMusic
-    used:  \"The Tale of a Cruel World\" produced by DM DOKURO\n                     
-    \n"
+  m_text: "A game by: \nAlbin Svahlstedt \n\nWith assets from: Pixel Frog, Frogs
+    and Kings, \nHannes Eichhorn, Ikoiku on itch.io, DaniDeDestroyer pinterest,\nSelfmade\nSawblade
+    by Ikoiku on itch.io\r\nCogwheel by DaniDeDestroyer pinterest\r\n\r\nChain Clink 
+    - Mike Koenig\r\nChain Fence Jump  -  Mike Koenig\r\nHarpoon - Mike Koenig\r\nMale
+    Grunt: - -\r\nMetal Claing -battlestar10\r\nDying Robot - wildcat\r\nMusic Blacksmith
+    - Conquest"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

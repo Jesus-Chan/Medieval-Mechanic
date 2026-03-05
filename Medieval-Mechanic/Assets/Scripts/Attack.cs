@@ -9,6 +9,9 @@ public class Attack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
 
+    [SerializeField] private AudioClip swingSound;
+    private AudioSource audioSource;
+
     private float nextAttackTime;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -17,6 +20,7 @@ public class Attack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -26,7 +30,13 @@ public class Attack : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 nextAttackTime = Time.time + attackCooldown;
+
                 animator.SetTrigger("yesAttack");
+
+                if (swingSound != null)
+                {
+                    audioSource.PlayOneShot(swingSound, 0.35f);
+                }
             }
         }
     }

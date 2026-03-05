@@ -1,10 +1,34 @@
 fileFormatVersion: 2
-guid: 796002873ddbb4449833e80bc68c1449
+guid: 8ab833f2a7517c740afe766e911080dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4723107735738678597
-    second: Idle_0
+      213: -5875759925921628861
+    second: GrappleMagnet_0
+  - first:
+      213: 2200062393384535261
+    second: GrappleMagnet_1
+  - first:
+      213: -8045614354141273278
+    second: GrappleMagnet_2
+  - first:
+      213: -2150160957620490089
+    second: GrappleMagnet_3
+  - first:
+      213: -4705856163974848923
+    second: GrappleMagnet_4
+  - first:
+      213: -5918015844882712371
+    second: GrappleMagnet_5
+  - first:
+      213: 7001666085701571998
+    second: GrappleMagnet_6
+  - first:
+      213: 868520768282059006
+    second: GrappleMagnet_7
+  - first:
+      213: -6013244543746555520
+    second: GrappleMagnet_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 550
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,34 +122,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 22
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54d7a982679db8140800000000000000
-      internalID: 4723107735738678597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: c4410e2f25b9e644b89734ab005c08ed
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +135,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":512.0,"y":341.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Idle_0: 4723107735738678597
+      GrappleMagnet_0: -5875759925921628861
+      GrappleMagnet_1: 2200062393384535261
+      GrappleMagnet_2: -8045614354141273278
+      GrappleMagnet_3: -2150160957620490089
+      GrappleMagnet_4: -4705856163974848923
+      GrappleMagnet_5: -5918015844882712371
+      GrappleMagnet_6: 7001666085701571998
+      GrappleMagnet_7: 868520768282059006
+      GrappleMagnet_8: -6013244543746555520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

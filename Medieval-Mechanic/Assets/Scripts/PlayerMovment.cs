@@ -15,6 +15,10 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private GameObject cherrieParticles, dustParticles;
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private GameObject damageParticles;
+
+
     [SerializeField] private Transform wrench;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private TMP_Text CogCounterText;
@@ -95,7 +99,7 @@ public class PlayerMovment : MonoBehaviour
             CherriesCollected++;
             CherryAmount.text = "" + CherriesCollected;
             audiosource.pitch = Random.Range(0.8f, 1.2f);
-            audiosource.PlayOneShot(pickupSound,0.5f);
+            audiosource.PlayOneShot(pickupSound,0.2f);
             Instantiate(cherrieParticles, other.transform.position, Quaternion.identity);
         }
 
@@ -143,7 +147,7 @@ public class PlayerMovment : MonoBehaviour
         rigbod.AddForce(new Vector2(0, JumpHeight));
 
         int randomValue = Random.Range(0, jumpSounds.Length);
-        audiosource.PlayOneShot(jumpSounds[randomValue], 0.5f);
+        audiosource.PlayOneShot(jumpSounds[randomValue], 0.2f);
         if (CheckIfOnGround() == true) 
         {
             Instantiate(dustParticles, transform.position, dustParticles.transform.localRotation);
@@ -161,12 +165,23 @@ public class PlayerMovment : MonoBehaviour
     {
         canMove = true; 
     }
+
     public void TakeDamage(int damageAmount)
     {
         Health -= damageAmount;
         HealthBar.value = Health;
 
-        if (Health<= 0)
+        // Play damage sound
+        audiosource.pitch = Random.Range(0.9f, 1.1f);
+        audiosource.PlayOneShot(damageSound, 0.35f);
+
+        // Spawn damage particles
+        if (damageParticles != null)
+        {
+            Instantiate(damageParticles, transform.position, Quaternion.identity);
+        }
+
+        if (Health <= 0)
         {
             Respawn();
         }

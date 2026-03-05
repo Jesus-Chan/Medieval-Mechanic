@@ -7,11 +7,18 @@ public class CogEnemy : MonoBehaviour
     [SerializeField] private float knockbackForce = 200f;
     [SerializeField] private float upwardForce = 100f;
 
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private GameObject deathParticles;
+
+    private AudioSource audioSource;
+
+
     private int moveDirection = 1;
     private Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -70,6 +77,18 @@ public class CogEnemy : MonoBehaviour
         if (player != null)
         {
             player.GetComponent<PlayerMovment>().AddCogKill();
+        }
+
+        // Spawn particles
+        if (deathParticles != null)
+        {
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+        }
+
+        // Play sound from temporary object
+        if (deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, 0.3f);
         }
 
         Destroy(gameObject);

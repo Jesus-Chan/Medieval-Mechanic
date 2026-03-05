@@ -9,7 +9,8 @@ public class QuestChecker : MonoBehaviour
     [SerializeField] private GameObject unfinishedText;
 
     [Header("Quest Settings")]
-    [SerializeField] private int questGoal = 5;
+    [SerializeField] private int cogGoal = 5;
+    [SerializeField] private int cherryGoal = 5;
     [SerializeField] private string sceneToLoad;   // <-- Type scene name here
 
     [Header("Pump Sprites")]
@@ -36,7 +37,7 @@ public class QuestChecker : MonoBehaviour
 
         if (player == null) return;
 
-        if (player.CogsKilled >= questGoal)
+        if (player.CogsKilled >= cogGoal && player.CherriesCollected >= cherryGoal)
         {
             ShowFinishedDialogue();
         }
