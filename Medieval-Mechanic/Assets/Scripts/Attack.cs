@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Attack : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class Attack : MonoBehaviour
 
                 if (swingSound != null)
                 {
+                    audioSource.pitch = Random.Range(0.8f, 1.1f);
                     audioSource.PlayOneShot(swingSound, 0.35f);
                 }
             }

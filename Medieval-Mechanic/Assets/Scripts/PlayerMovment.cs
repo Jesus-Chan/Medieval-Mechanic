@@ -106,6 +106,7 @@ public class PlayerMovment : MonoBehaviour
         if (other.CompareTag("Melon"))
         {
             RestoreHealth(other.gameObject);
+            
         }
 
         
@@ -205,6 +206,9 @@ public class PlayerMovment : MonoBehaviour
         {
             Health+= 1;
             HealthBar.value = Health;
+            audiosource.pitch = Random.Range(0.8f, 1.2f);
+            audiosource.PlayOneShot(pickupSound, 0.2f);
+            Instantiate(cherrieParticles, transform.position, Quaternion.identity);
             Destroy(HealthPickup);
         }
         

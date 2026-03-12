@@ -90,6 +90,7 @@ public class EnemyMovment : MonoBehaviour
             //Play death sound
             if (deathSound != null)
             {
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
                 audioSource.PlayOneShot(deathSound, 0.4f);
             }
 

@@ -11,6 +11,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LineRenderer chain;
     [SerializeField] private float releaseBoost = 2f;
+    [SerializeField] private LayerMask obstacleLayer;
 
 
     //Audio and Particles
@@ -85,21 +86,32 @@ public class GrapplingHook : MonoBehaviour
 
     void StartGrapple()
     {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         RaycastHit2D hit = Physics2D.Raycast(
-            Camera.main.ScreenToWorldPoint(Input.mousePosition),
+            mousePos,
             Vector2.zero,
             Mathf.Infinity,
             grappleLayer);
 
-
-
-
         if (hit.collider != null)
         {
+            // Check if something blocks the line of sight
+            RaycastHit2D blockCheck = Physics2D.Raycast(
+                transform.position,
+                (hit.point - (Vector2)transform.position).normalized,
+                Vector2.Distance(transform.position, hit.point),
+                obstacleLayer);
+
+            // If something blocks it, cancel grapple
+            if (blockCheck.collider != null)
+                return;
+
             grapplePoint = hit.point;
             grapplePoint.z = 0;
+
             audioSource.pitch = Random.Range(0.9f, 1.1f);
-            audioSource.PlayOneShot(shootSound, 0.3f);  // Play shoot sound
+            audioSource.PlayOneShot(shootSound, 0.3f);
 
             shootProgress = 0f;
 
@@ -108,10 +120,7 @@ public class GrapplingHook : MonoBehaviour
             chain.SetPosition(1, transform.position);
 
             isShooting = true;
-            
         }
-        
-
     }
 
     void FinishGrapple()
